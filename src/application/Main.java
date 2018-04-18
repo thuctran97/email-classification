@@ -7,6 +7,7 @@ import java.util.List;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.EmailContentTokenizer;
 import model.EmailData;
 import utils.DataReader;
 import javafx.scene.Scene;
@@ -38,6 +39,12 @@ public class Main extends Application {
 			
 			for (EmailData email : emails) {
 				System.out.println(email);
+				System.out.print("List of word in emails : ");
+				List<String> words = EmailContentTokenizer.tokenize(email);
+				for (String word : words) {
+					System.out.print(word + ", ");
+				}
+				System.out.println();
 			}
 		}catch (FileNotFoundException e) {
 			e.printStackTrace();

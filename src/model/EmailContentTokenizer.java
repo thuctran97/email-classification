@@ -7,10 +7,10 @@ public class EmailContentTokenizer {
 		return text;
 	}
 	
-	public static List<String> tokenize(String data) {
+	public static List<String> tokenize(EmailData email) {
 		List<String> tokens = new ArrayList<>();				
-		data = preprocess(data);
-		String[] temps = data.split(" ");
+		String content = preprocess(email.getContent());
+		String[] temps = content.split(" ");
 		for (String word : temps) {
 			tokens.add(word);
 		}
