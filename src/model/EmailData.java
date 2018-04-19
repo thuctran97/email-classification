@@ -52,8 +52,5 @@ public class EmailData {
 	@Override
 	public String toString() {
 		return "Email class : " + this.emailClass + " | Content : " + this.content;
-	}
-	
-	
-	
+	}	
 }
