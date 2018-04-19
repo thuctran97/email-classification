@@ -12,18 +12,24 @@ public class EmailContentTokenizer {
 		tokens = tokenize(content);
 		return tokens;
 	}
-//	public static int check(int a) {
-//		if ((a>47 && a<58) || (a>64 && a<91) || (a>96 && a<123)) return 1;
-//		if (a!=32) return 2;
-//		return 0;
-//	}
-//	public static boolean sameType(char a, char b) {
-//		int na = (int)a;
-//		int nb = (int)b;
-//		if (check(na)==check(nb) && check(na)!=0) return true;
-//		return false;
-//	}
-	public static boolean check(int a) {
+	//-------------chia từng cụm kí tự không phải số/chữ------------------
+	//---vd: abc*^654  => {abc},{*^},{654} 
+/*
+	public static int check(int a) {
+		if ((a>47 && a<58) || (a>64 && a<91) || (a>96 && a<123)) return 1;
+		if (a!=32) return 2;
+		return 0;
+	}
+	public static boolean sameType(char a, char b) {
+		int na = (int)a;
+		int nb = (int)b;
+		if (check(na)==check(nb) && check(na)!=0) return true;
+		return false;
+	}
+*/	
+	//--------------chia riêng từng kí tự không phải số/chữ---------------
+	//---vd: abc*^654  => {abc},{*},{^},{654} 
+/*	public static boolean check(int a) {
 		if ((a>47 && a<58) || (a>64 && a<91) || (a>96 && a<123)) return true;
 		return false;
 	}
@@ -33,6 +39,9 @@ public class EmailContentTokenizer {
 		if (check(na) && check(nb) ) return true;
 		return false;
 	}
+*/
+	//------------chạy cho cả 2 trường hợp trên-------------------------
+/*
 	public static List<String> tokenize(String content) {
 		List<String> tokens = new ArrayList<>();
 		StringBuilder s = new StringBuilder(content);
@@ -51,18 +60,22 @@ public class EmailContentTokenizer {
 		}
 		return tokens; 
 	}
-//	public static List<String> tokenize(String content) {
-//		List<String> tokens = new ArrayList<>();
-//		String[] temps = content.split(" ");
-//		for (String word : temps) {
-//			String w = word;
-//			if (w.contains("�")) {
-//				StringBuilder s = new StringBuilder(w);
-//				s.deleteCharAt(w.indexOf("�"));
-//				w = s.toString();
-//			}
-//			tokens.add(w);
-//		}
-//		return tokens; 
-//	}
+*/
+	
+	
+//---------------split theo khoảng trắng-----------------------//
+	public static List<String> tokenize(String content) {
+		List<String> tokens = new ArrayList<>();
+		String[] temps = content.split(" ");
+		for (String word : temps) {
+			String w = word;
+			if (w.contains("Â")) {
+				StringBuilder s = new StringBuilder(w);
+				s.deleteCharAt(w.indexOf("Â"));
+				w = s.toString();
+			}
+			tokens.add(w);
+		}
+		return tokens; 
+	}
 }
